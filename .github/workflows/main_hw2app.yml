@@ -62,4 +62,13 @@ jobs:
           app-name: 'hw2App'
           slot-name: 'Production'
           package: .
+
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Upload static assets to Blob Storage
+        uses: azure/CLI@v1
+        with:
+          inlineScript: |
+            az storage blob upload-batch --account-name kubas123 --auth-mode login -d 'wwwroot' -s 'wwwroot' --overwrite
           
